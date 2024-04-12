@@ -3,7 +3,7 @@ let data = [
       id : 0,
       title : "캔디 글레이즈 컬러밤",
       price : "49,999원",
-      image: "/img/lib1.png" 
+      image: "/img/lib1.png",
     },
   
     {
@@ -109,6 +109,13 @@ let data = [
       price : "49,999원",
       image: "/img/lib2.png" 
     },
+    /*리미티드 에디션*/
+    {
+      id : 18,
+      title : "캔디 글레이즈 컬러밤",
+      price : "49,999원",
+      image: "/img/limited.jpg" 
+    }
   ] 
 
   export default data;
