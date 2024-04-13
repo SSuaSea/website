@@ -66,7 +66,7 @@ function App() {
     <div className="App">
       <Header style={{ top: `${scrollY}px` }}  />
       <Routes>
-        <Route path="https://suazzang.github.io/glossy/" element={
+        <Route path="/" element={
           <>
             <div className="main-bg"></div>
             <div className="container">
