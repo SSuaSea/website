@@ -1,16 +1,34 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./layout/Header.jsx";
 import Footer from "./layout/Footer.jsx";
 import CustomButton from './CustomButton.jsx';
 import React, { useState, useEffect } from 'react';
-import {Carousel } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 import data from './data.js';
-import { Route,Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Login from './components/Login.jsx';
+import Signup from './components/Signup.jsx'
+import Best from './components/Best.jsx';
+import New from './components/New.jsx';
+import Detail from './Detail.js';
+import Collection from './components/Collection.jsx';
+import Notice from './components/Notice.jsx';
 import YouTube from "react-youtube";
+import { useNavigate } from 'react-router-dom';
 
 function App() {
-  
+
+  const navigate = useNavigate();
+  const [selectedProductId, setSelectedProductId] = useState(null); // 클릭된 상품의 id를 관리할 상태
+
+  const handleBuyButtonClick = (id) => {
+    // buy 버튼을 클릭하면 해당 상품의 Detail 페이지로 이동
+    setSelectedProductId(id); // 클릭된 상품의 id를 상태에 설정
+    navigate(`/detail/${id}`); // 해당 상품의 id를 URL 파라미터로 전달하여 Detail 페이지로 이동
+  };
+
+
   const [scrollY, setScrollY] = useState(0);
   const [isLimitedAnimated, setIsLimitedAnimated] = useState(false);
   const [isPremiumAnimated, setIsPremiumAnimated] = useState(false);
@@ -28,10 +46,14 @@ function App() {
   }, []);
 
   useEffect(() => {
+
     const limitedEditionSection = document.querySelector('.limited-edition-section');
     const premiumEditionSection = document.querySelector('.premium-edition-section');
 
     const handleScrollAnimation = () => {
+
+      if (!limitedEditionSection || !premiumEditionSection) return;
+
       const sectionTopLimited = limitedEditionSection.offsetTop;
       const sectionTopPremium = premiumEditionSection.offsetTop;
       const windowHeight = window.innerHeight;
@@ -52,6 +74,8 @@ function App() {
     };
   }, [scrollY, isLimitedAnimated, isPremiumAnimated]); // 의존성 목록에 isLimitedAnimated와 isPremiumAnimated 추가
 
+
+
   const chunkArray = (arr, size) => {
     const chunkedArr = [];
     for (let i = 0; i < arr.length; i += size) {
@@ -63,8 +87,9 @@ function App() {
   let [libs] = useState(data);
 
   return (
+
     <div className="App">
-      <Header style={{ top: `${scrollY}px` }}  />
+      <Header style={{ top: `${scrollY}px` }} />
       <Routes>
         <Route path="/" element={
           <>
@@ -76,7 +101,7 @@ function App() {
                   <Carousel.Item key={index}>
                     <div className="row text-dark">
                       {group.map((lib, idx) => (
-                        <Card key={idx} lib={lib} image={lib.image} />
+                        <Card key={idx} lib={lib} image={lib.image} handleBuyButtonClick={handleBuyButtonClick} />
                       ))}
                     </div>
                   </Carousel.Item>
@@ -90,25 +115,25 @@ function App() {
                   <Carousel.Item key={index}>
                     <div className="row text-dark">
                       {group.map((lib, idx) => (
-                        <Card key={idx} lib={lib} image={lib.image} />
+                        <Card key={idx} lib={lib} image={lib.image} handleBuyButtonClick={handleBuyButtonClick} />
                       ))}
                     </div>
                   </Carousel.Item>
                 ))}
               </Carousel>
             </div>
-            <div className="bg-black mt-3" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <div className="bg-black mt-3" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <div>
                 <h1 className="text-center text-white">Collection</h1>
-                <video muted autoPlay loop style={{ width: '100%', height:'auto' }}>
+                <video muted autoPlay loop style={{ width: '100%', height: 'auto' }}>
                   <source src="/img/collection.mp4" type="video/mp4" />
                 </video>
                 <p className="text-white">
-                풍성한 컬러를 더해 자신감 넘치는 매력을 발산해보세요</p>
+                  풍성한 컬러를 더해 자신감 넘치는 매력을 발산해보세요</p>
               </div>
             </div>
-            <div className="bg-black" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <YouTube
+            <div className="bg-black" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <YouTube
                 videoId="HVytZ0c2cmw" // 동영상 주소
                 opts={{
                   width: "100%",
@@ -124,39 +149,47 @@ function App() {
             <div className={`container my-3 ${isLimitedAnimated ? 'fadeInRight' : ''} limited-edition-section`}>
               <h1>Limited Edition</h1>
               <div className="text-center">
-              <img src="/img/limited.jpg" alt="limited."  style={{width:'100%', height:'400px'}}/>
-              <h2>Collection</h2>
-              <p>한정판 에디션</p>
-              <CustomButton text="Buy" />
+                <img src={data[18].image} alt="limited." style={{ width: '100%', height: '400px' }} />
+                <h2>Collection</h2>
+                <p>한정판 에디션</p>
+                <CustomButton text="Buy" onClick={() => handleBuyButtonClick(18)} />
               </div>
             </div>
             <div className={`container my-3 ${isPremiumAnimated ? 'fadeInLeft' : ''} premium-edition-section`}>
               <h1 className="text-end">Premium Edition</h1>
               <div className="text-center">
-              <img src="/img/premium.jpg" alt="limited."  style={{width:'100%', height:'400px'}}/>
-              <h2>Collection</h2>
-              <p>프리미엄 에디션</p>
-              <CustomButton text="Buy" />
+                <img src={data[19].image} alt="limited." style={{ width: '100%', height: '400px' }} />
+                <h2>Collection</h2>
+                <p>프리미엄 에디션</p>
+                <CustomButton text="Buy" onClick={() => handleBuyButtonClick(19)} />
               </div>
             </div>
-            <Footer style={{ bottom: `-${scrollY}px` }}  />
+            <Footer style={{ bottom: `-${scrollY}px` }} />
           </>
         } />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/best" element={<Best />} />
+        <Route path="/new" element={<New />} />
+        <Route path="/collection" element={<Collection />} />
+        <Route path="/detail/:id" element={<Detail libs={libs} />} />
+        <Route path="/notice" element={<Notice />} />
+
       </Routes>
     </div>
   );
 }
 
 function Card(props) {
+  const { lib, handleBuyButtonClick } = props; // props로부터 lib와 handleBuyButtonClick을 추출
   return (
     <div className="col-md-4 text-center">
-      <img src={props.image} width="50%" alt="book" />
-      <h5>{props.lib.title}</h5>
-      <h6>{props.lib.price}</h6>
+      <img src={lib.image} width="50%" alt="lib" />
+      <h5>{lib.title}</h5>
+      <h6>{lib.price}원</h6>
+      <CustomButton text="Buy" onClick={() => handleBuyButtonClick(lib.id)} />
     </div>
   );
 }
-
 
 export default App;

@@ -31,9 +31,9 @@ export default function Header() {
     <div className="header">
       <div className="auth-links">
         <Link to="/login" className="nav-link text-white">로그인</Link>
-        <Link to="/login" className="nav-link text-white">회원가입</Link>
+        <Link to="/signup" className="nav-link text-white">회원가입</Link>
       </div>
-      <h1 className="glossy">Glossy</h1>
+      <Link to="/" className="glossy" style={{ display: 'block', margin: '0 auto', color:'aliceblue'}}>Glossy</Link>
       {windowWidth <= 768 && (
         <button className="toggle-menu-button" onClick={toggleMenu}>
           {isMenuOpen ? 'Close' : 'Menu'}
