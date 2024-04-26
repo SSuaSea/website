@@ -1,6 +1,6 @@
 # React 쇼핑몰 프로젝트 Glossy
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="![glossy](https://github.com/suazzang/website/assets/159693278/42de185e-c4f4-4d66-94ec-5252ba9c588f)" />
 
 ## Available Scripts
 
