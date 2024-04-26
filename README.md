@@ -1,6 +1,6 @@
 # React 쇼핑몰 프로젝트 Glossy
 
-<img src="![glossy](https://github.com/suazzang/website/assets/159693278/42de185e-c4f4-4d66-94ec-5252ba9c588f)" />
+<img src="!https://github.com/suazzang/website/assets/159693278/42de185e-c4f4-4d66-94ec-5252ba9c588f" />
 
 ## Available Scripts
 
