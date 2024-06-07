@@ -31,5 +31,3 @@ npm start
 ````
 npm run deploy
 ````
-
-## 추가)장바구니 기능구현중
