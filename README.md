@@ -1,5 +1,11 @@
 # React 쇼핑몰 프로젝트 Glossy
 
+## 기술스택
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>  <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+ <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/> <img src="https://img.shields.io/badge/react.js-61DAFB?style=for-the-badge&logo=react&logoColor=black"/>
+
+
+
 <img src="https://github.com/SSuaSea/website/assets/159693278/42de185e-c4f4-4d66-94ec-5252ba9c588f" />
  https://SSuaSea.github.io/website/
 
